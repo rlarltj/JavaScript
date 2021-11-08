@@ -43,7 +43,7 @@
         <a class="btn2 btn-primary btn-lg" href="#" role="button">Learn more</a>
         <a class="btn btn-primary btn-danger" href="#" role="button">Menu</a>
       </div>
-
+      <h4 class="my-4 text-center">Showcase</h4>
       <div style="overflow: hidden">
         <div class="slide-container">
           <div class="slide-box">
@@ -61,6 +61,8 @@
       <button class="slide-1">1</button>
       <button class="slide-2">2</button>
       <button class="slide-3">3</button>
+      <button class="slide-4">다음</button>
+
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
@@ -78,7 +80,37 @@
         $("#nav-sub-btn").click(function(){
             $('.nav-sub').slideToggle();
         });
-    
+        $(".slide-1").click(function(){
+          $(".slide-container").css( 'transform',  'translateX(0)')
+        })
+        $(".slide-2").click(function(){
+          $(".slide-container").css( 'transform',  'translateX(-100vw)')
+        })
+        $(".slide-3").click(function(){
+          $(".slide-container").css( 'transform',  'translateX(-200vw)')
+        })
+
+        let 지금보이는사진 = 1;
+        $('.slide-4').click(function(){
+          if(지금보이는사진 < 3){
+          $(".slide-container").css( 'transform',  'translateX(-'+ 지금보이는사진+'00vw)')
+          지금보이는사진++;
+        }
+          
+        })
+        // let 현재사진 = 1;
+        // $(".slide-4").click(function(){
+        //   if(현재사진 == 1){
+        //   $(".slide-container").css( 'transform',  'translateX(-100vw)')
+        //   현재사진++;
+        //   }else if(현재사진 == 2){
+        //     $(".slide-container").css( 'transform',  'translateX(-200vw)')
+        //   현재사진++;
+        //   }else{
+        //     $(".slide-container").css( 'transform',  'translateX(0)')
+        //     현재사진 = 1;
+        //   }
+        // })
 
         $('form').on('submit', function(e){
           let regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
