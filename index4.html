@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <style>
+        .size-select{
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+</head>
+<body>
+    <form class="container my-5">
+        <div class="form-group">
+      
+          <p>상품선택</p>
+          <select class="form-control" id="option1">
+            <option>바지</option>
+            <option>셔츠</option>
+          </select>
+        
+          <div class="size-select">
+          <p class="mt-4">사이즈선택</p>
+          <select class="form-control" id="option2">
+          </select>
+          </div>
+        </div>
+      </form>
+
+      <script>
+          $(".form-control").on("change", function(){
+            $("#option2").html('');
+            if($("#option1").val() == "셔츠"){
+              $(".size-select").css({display: "block"});
+              let 템플릿 = `<option>95</option>
+              <option>100</option>
+              <option>105</option>`
+              $("#option2").append(템플릿);
+              }else{
+                let 바지사이즈 = [28,30,32,34,36,38];
+                바지사이즈.forEach((size) => { 
+                    let 템플릿2 = `<option>${size}<option>`
+                        $("#option2").append(템플릿2);
+                })
+
+                }}
+            )
+
+      </script>
+</body>
+</html>
