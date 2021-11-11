@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <title>Document</title>
+</head>
+<body>  
+    <div class="card-group container">
+      </div>
+      <div class="container my-4">
+          <button class="btn btn-danger" id="price">가격순정렬</button>
+          <button class="btn btn-danger" id="letter">가나다정렬</button>
+          <button class="btn btn-danger" id="filter">6만원이하</button>
+          <button class="btn btn-danger" id="return">되돌리기</button>
+      </div>
+      <script>
+    
+        let products = [
+          { id : 0, price : 70000, title : 'Blossom Dress' },
+          { id : 1, price : 50000, title : 'Springfield Shirt' },
+          { id : 2, price : 60000, title : 'Black Monastery' }
+        ]
+
+        let realProducts = [...products];
+
+        $("#price").click(function(){
+            products.sort((a,b)=>{return a.price - b.price});
+            상품정렬(products);
+        })
+
+        $("#letter").click(function(){
+            products.sort((a,b)=>{
+                if(a.title< b.title ==true){
+                    return 1;
+                }else{
+                    return -1;
+                }
+            });
+            상품정렬(products);
+        });
+
+        $("#return").click(function(){
+            $(".card-group").html('');
+            상품정렬(realProducts);
+        })
+
+        $("#filter").click(function(){
+            $(".card-group").html('');
+            let products2 = products.filter((i)=>{
+                return i.price <= 60000;
+            })
+            for(let i=0; i<products2.length; i++){
+            
+            let template = `<div class="card">
+          <img src="https://via.placeholder.com/600">
+          <div class="card-body">
+            <h5>${products2[i].title}</h5>
+            <p>가격 : <span>${products2[i].price}</span></p>
+            <button class="btn btn-danger">주문하기</button>
+          </div>
+        </div>`
+            $(".card-group").append(template);
+            }       
+        }
+        )
+
+        function 상품정렬(상품){
+            for(i=0; i<상품.length; i++){
+        let template = `<div class="card">
+          <img src="https://via.placeholder.com/600">
+          <div class="card-body">
+            <h5>${상품[i].title}</h5>
+            <p>가격 : <span>${상품[i].price}</span></p>
+            <button class="btn btn-danger">주문하기</button>
+          </div>
+        </div>`
+            $(".card-group").append(template);
+        }
+        
+    }
+
+    // 상품정렬(products);
+
+      </script>
+</body>
+</html>
